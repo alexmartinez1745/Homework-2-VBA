@@ -1,37 +1,36 @@
-
 Sub Stocks()
 'Set variable to run through all worksheets
     Dim WS As Worksheet
 'Loop through all worksheets
     For Each WS In Worksheets
 'Name columns
-        WS.Cells(1, 9).Value = "Ticker"
-        WS.Cells(1, 10).Value = "Yearly Change"
-        WS.Cells(1, 11).Value = "Percent Change"
-        WS.Cells(1, 12).Value = "Total Stock Volume"
-'Start with creating a variable for ticker symbols
+        WS.Range("I1").Value = "Ticker"
+        WS.Range("J1").Value = "Yearly Change"
+        WS.Range("K1").Value = "Percent Change"
+        WS.Range("L1").Value = "Total Stock Volume"
+'Start with creating a variable for ticker/summary symbols
         Dim ticker As String
         Dim Summary As Long
         Summary = 2
 'Creating variable for yearly change
         Dim YearOpen As Double
-        YearOpen = 0
+         YearOpen = 0
         Dim YearClose As Double
-        YearClose = 0
+         YearClose = 0
         Dim YearChange As Double
-        YearChange = 0
+         YearChange = 0
 'Create variable for Percentage change
         Dim Percentage As Double
-        Percentage = 0
+         Percentage = 0
 'Create variable for Volume of each stock
         Dim Vol As Double
-        Vol = 0
+         Vol = 0
 'Loop through the sheet with last row shortcut
-        lastrow = WS.Cells(Rows.Count, 1).End(xlUp).Row
+        Lastrow = WS.Cells(Rows.Count, 1).End(xlUp).Row
 'Set begin price for when stock opens
         YearOpen = WS.Cells(2, 3).Value
 'Loop through worksheet
-        For i = 2 To lastrow
+        For i = 2 To Lastrow
 'Find when ticker changes and set up in designated column
             If WS.Cells(i + 1, 1).Value <> WS.Cells(i, 1).Value Then
                 ticker = WS.Cells(i, 1).Value
@@ -65,9 +64,7 @@ Sub Stocks()
                 Percentage = 0
             Else
                 Vol = Vol + WS.Cells(i, 7).Value
-    
             End If
         Next i
     Next WS
-    
 End Sub
